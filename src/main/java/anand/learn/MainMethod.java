@@ -3,17 +3,11 @@ package anand.learn;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 public class MainMethod {
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration();
-        configuration.configure();
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                configuration.getProperties()).build();
-        SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         MainMethod obj = new MainMethod();
 		obj.doTransaction(sessionFactory);
 		sessionFactory.close();
